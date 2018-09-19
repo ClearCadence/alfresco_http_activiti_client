@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.alfresco.model.ContentModel;
@@ -51,11 +52,16 @@ public class ActivitiClient extends BaseProcessorExtension {
 	public ScriptableObject startDocumentProcess(String processName, String name, ScriptableObject scriptableObject,
 			String[] documentPropertyNames, ScriptNode[] documents) throws JSONException, IOException {
 
-		String[] documentIds = new String[documents.length];
+		String[] documentIds = new String[0];
 
-		for (int i = documents.length; i > 0; i--) {
-			documentIds[i - 1] = postContent(documents[i - 1]);
+		if (documents != null) {
+			documentIds = new String[documents.length];
+
+			for (int i = documents.length; i > 0; i--) {
+				documentIds[i - 1] = postContent(documents[i - 1]);
+			}
 		}
+
 		return start(processName, name, scriptableObject, documentPropertyNames, documentIds);
 	}
 
@@ -71,6 +77,20 @@ public class ActivitiClient extends BaseProcessorExtension {
 		}
 
 		return start(processName, name, scriptableObject, documentPropertyNames, documentIds);
+	}
+
+	public void sleepFor(long milliseconds) {
+
+		logger.debug("::: milliseconds ::: " + milliseconds);
+		logger.debug("::: current Date time ::: " + new Date().toString());
+
+		try {
+			Thread.sleep(milliseconds);
+		} catch (InterruptedException e) {
+			logger.error("::: e.getMessage() ::: " + e.getMessage());
+			logger.error("::: Error :::" + e);
+		}
+		logger.debug("::: after Thread sleep Date time ::: " + new Date().toString());
 	}
 
 	private ScriptNode[] convertNativeArrayToScriptNodes(NativeArray docs) {
@@ -120,7 +140,6 @@ public class ActivitiClient extends BaseProcessorExtension {
 		String httpUrl = activitiEndpoint + "/api/enterprise/process-instances";
 
 		logger.debug("URL:" + httpUrl);
-		logger.debug("Paylod:" + json.toString());
 
 		String response = request.post(httpUrl, json.toString(), "application/json", user, password);
 		return jsonUtils.toObject(response);

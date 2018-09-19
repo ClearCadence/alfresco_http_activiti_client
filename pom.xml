@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alfresco.se</groupId>
-    <artifactId>http_js</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>http_js Repository AMP project</name>
+    <artifactId>http_js_custom</artifactId>
+    <version>1.1</version>
+    <name>http_js_custom Repository AMP project</name>
     <packaging>amp</packaging>
-    <description>Manages the lifecycle of the http_js Repository AMP (Alfresco Module Package)</description>
+    <description>Manages the lifecycle of the http_js_custom Repository AMP (Alfresco Module Package)</description>
 
     <parent>
         <groupId>org.alfresco.maven</groupId>

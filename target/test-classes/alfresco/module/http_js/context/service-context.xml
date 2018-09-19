@@ -18,14 +18,14 @@
 -->
 <beans>
 
-    <bean id="http_js.http" parent="baseJavaScriptExtension" class="com.alfresco.se.extension.js.http.HttpRequest">
+    <bean id="http_js_custom.http" parent="baseJavaScriptExtension" class="com.alfresco.se.extension.js.http.HttpRequest">
 	    <property name="extensionName">
 	        <value>http</value>
 	    </property>
 	</bean>
 	
 	
-	<bean id="http_js.activitiClient" parent="baseJavaScriptExtension" class="com.alfresco.se.extension.js.activiti.ActivitiClient">
+	<bean id="http_js_custom.activitiClient" parent="baseJavaScriptExtension" class="com.alfresco.se.extension.js.activiti.ActivitiClient">
         <property name="extensionName">
             <value>activiti</value>
         </property>

@@ -19,5 +19,5 @@
 
 <beans>
 	<!-- This is filtered by Maven at build time, so that module name is single sourced. -->
-    <import resource="classpath:alfresco/module/http_js/context/service-context.xml" />
+    <import resource="classpath:alfresco/module/http_js_custom/context/service-context.xml" />
 </beans>
